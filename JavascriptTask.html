@@ -47,12 +47,8 @@
                 id="discount"><br><br><br>
 
 
-            <label for="subtotal">Subtotal:</label>
-            <input type="text" id="subtotal" onkeyup="subtotalFunction()" name="subtotal" readonly><br><br><br>
-
-            <label for="total">Total:</label>
-            <input type="text" id="total" onkeyup="totalFunction()" name="total" readonly><br><br><br>
-
+            <p id="subtotal">Subtotal:</p>
+            <p id="total">Total:</p>
 
         </form>
 
@@ -100,7 +96,7 @@
 
             function totalFunction(){
                 let total;
-                subtotal=document.getElementById("subtotal").value;
+                let subtotal=document.getElementById("subtotal").value;
                 let tax=document.getElementById("tax").value;
                 let shipping=document.getElementById("shipping").value;
                 let discount=document.getElementById("discount").value;
