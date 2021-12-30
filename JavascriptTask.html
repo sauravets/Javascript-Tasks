@@ -10,7 +10,9 @@
         .jsform {
             text-align: center;
             border: 1px solid black;
-            width: 100%;
+            width: 50%;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         h1 {
@@ -24,28 +26,33 @@
     <div class="jsform">
         <form action="">
             <label for="product-name">Product Name:</label>
-            <label for="product-name">Quantity:</label>
-            <label for="product-name">Amount:</label><br><br>
+            <input type="text" name="product-name" id="product-name"><br><br><br>
+
+            <label for="quantity">Quantity:</label>
+            <input type="text" onkeypress="return onlyNumberKey(event)" maxlength="11" name="quantity" id="quantity"><br><br><br>
+
+            <label for="amount">Amount:</label>
+            <input type="text" onkeypress="return onlyNumberKey(event)" maxlength="11" name="amount" id="amount">
+            <br><br><br>
 
             <label for="tax">Tax:</label>
             <input type="text" onkeypress="return onlyNumberKey(event)" maxlength="11" name="tax" id="tax"><br><br><br>
 
             <label for="shipping">Shipping:</label>
             <input type="text" onkeypress="return onlyNumberKey(event)" maxlength="11" name="shipping"
-            id="shipping"><br><br><br>
+                id="shipping"><br><br><br>
 
             <label for="discount">Discount:</label>
             <input type="text" onkeypress="return onlyNumberKey(event)" maxlength="11" name="discount"
-            id="discount"><br><br><br>
+                id="discount"><br><br><br>
+
 
             <label for="subtotal">Subtotal:</label>
-            <input type="text" onkeypress="return onlyNumberKey(event)" maxlength="11" name="subtotal"
-            id="discount"><br><br><br>
+            <input type="text" id="subtotal" onkeyup="subtotalFunction()" name="subtotal" readonly><br><br><br>
 
             <label for="total">Total:</label>
-            <input type="text" onkeypress="return onlyNumberKey(event)" maxlength="11" name="total"
-            id="discount"><br><br><br>
-            
+            <input type="text" id="total" onkeyup="totalFunction()" name="total" readonly><br><br><br>
+
 
         </form>
 
@@ -58,6 +65,49 @@
                     return false;
                 return true;
             }
+
+            // let quantity = q;
+            // let amount = a;
+            // let tax = t;
+            // let shipping = s;
+            // let discount = d;
+
+            // let quantity=x;
+            // let amount =y;
+            // let subtotal=x*y;
+            // document.getElementById("subtotal").innerHTML=subtotal;
+
+            // function multiply(amount, quantity) {
+            //     let subtotal = parseInt(amount) * parseInt(quantity)
+            //     document.getElementById("subtotal").innerHTML = subtotal;
+            // }
+
+            // var subtotal = myFunction(amount, quantity);
+            // document.getElementById("subtotal").innerHTML = subtotal;
+
+            // function myFunction(amount, quantity) {
+            //     return amount * quantity;
+            // }
+
+
+            function subtotalFunction(){
+                let subtotal;
+                let quantity = document.getElementById("quantity").value;
+                let amount= document.getElementById("amount").value;
+                subtotal=q*a;
+                document.getElementById("subtotal").value=subtotal;
+            }
+
+            function totalFunction(){
+                let total;
+                subtotal=document.getElementById("subtotal").value;
+                let tax=document.getElementById("tax").value;
+                let shipping=document.getElementById("shipping").value;
+                let discount=document.getElementById("discount").value;
+                total=({subtotal}+{tax}+{shipping})-{discount};
+                document.getElementById("total").value=total;
+            }
+                
         </script>
     </div>
 </body>
