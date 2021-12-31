@@ -13,6 +13,7 @@
             width: 50%;
             margin-left: auto;
             margin-right: auto;
+            padding-top: 20px;
         }
 
         h1 {
@@ -29,7 +30,8 @@
             <input type="text" name="product-name" id="product-name"><br><br><br>
 
             <label for="quantity">Quantity:</label>
-            <input type="text" onkeypress="return onlyNumberKey(event)" maxlength="11" name="quantity" id="quantity"><br><br><br>
+            <input type="text" onkeypress="return onlyNumberKey(event)" maxlength="11" name="quantity"
+                id="quantity"><br><br><br>
 
             <label for="amount">Amount:</label>
             <input type="text" onkeypress="return onlyNumberKey(event)" maxlength="11" name="amount" id="amount">
@@ -46,9 +48,11 @@
             <input type="text" onkeypress="return onlyNumberKey(event)" maxlength="11" name="discount"
                 id="discount"><br><br><br>
 
+             <p>Subtotal:<span id="subtotal" oninput="return subtotalFunction()"></span></p>
+            <p>Total:<span id="total" oninput="return totalFunction()"></span></p>
+            
 
-            <p id="subtotal">Subtotal:</p>
-            <p id="total">Total:</p>
+
 
         </form>
 
@@ -62,48 +66,27 @@
                 return true;
             }
 
-            // let quantity = q;
-            // let amount = a;
-            // let tax = t;
-            // let shipping = s;
-            // let discount = d;
+            
 
-            // let quantity=x;
-            // let amount =y;
-            // let subtotal=x*y;
-            // document.getElementById("subtotal").innerHTML=subtotal;
-
-            // function multiply(amount, quantity) {
-            //     let subtotal = parseInt(amount) * parseInt(quantity)
-            //     document.getElementById("subtotal").innerHTML = subtotal;
-            // }
-
-            // var subtotal = myFunction(amount, quantity);
-            // document.getElementById("subtotal").innerHTML = subtotal;
-
-            // function myFunction(amount, quantity) {
-            //     return amount * quantity;
-            // }
-
-
-            function subtotalFunction(){
-                let subtotal;
+            function subtotalFunction() {
+                let subtotal = "";
                 let quantity = document.getElementById("quantity").value;
-                let amount= document.getElementById("amount").value;
-                subtotal=q*a;
-                document.getElementById("subtotal").value=subtotal;
+                let amount = document.getElementById("amount").value;
+                subtotal = quantity * amount;
+                // document.getElementById("subtotal").value = subtotal;
+                document.getElementById("subtotal").innerHTML = subtotal;
             }
 
-            function totalFunction(){
-                let total;
-                let subtotal=document.getElementById("subtotal").value;
-                let tax=document.getElementById("tax").value;
-                let shipping=document.getElementById("shipping").value;
-                let discount=document.getElementById("discount").value;
-                total=({subtotal}+{tax}+{shipping})-{discount};
-                document.getElementById("total").value=total;
+            function totalFunction() {
+                let total = "";
+                let subtotal = document.getElementById("subtotal").value;
+                let tax = document.getElementById("tax").value;
+                let shipping = document.getElementById("shipping").value;
+                let discount = document.getElementById("discount").value;
+                total = ({subtotal}+{tax}+{shipping})-{discount};
+                document.getElementById("total").innerHTML = total;
             }
-                
+
         </script>
     </div>
 </body>
