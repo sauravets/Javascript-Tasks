@@ -48,12 +48,16 @@
             <input type="text" onkeypress="return onlyNumberKey(event)" maxlength="11" name="discount"
                 id="discount"><br><br><br>
 
-             <p>Subtotal:<span id="subtotal" oninput="return subtotalFunction()"></span></p>
-            <p>Total:<span id="total" oninput="return totalFunction()"></span></p>
+                <input type="button" onClick="getSubtotal()" Value="subtotal" />
+
+                <input type="button" onClick="getTotal()" Value="total" />
+
+             <!-- <p>Subtotal:<span id="subtotal" oninput="return getSubtotal()"></span></p> -->
+             <p>subtotal is:<span id="subtotal"></span></p>
+             <p>total is:<span id="total"></span></p>
+
+            <!-- <p>Total:<span id="total" oninput="return getTotal()"></span></p> -->
             
-
-
-
         </form>
 
         <script>
@@ -67,25 +71,37 @@
             }
 
             
-
-            function subtotalFunction() {
-                let subtotal = "";
+            function getSubtotal() {
+                let subtotal;
                 let quantity = document.getElementById("quantity").value;
                 let amount = document.getElementById("amount").value;
                 subtotal = quantity * amount;
+                console.log(subtotal);
                 // document.getElementById("subtotal").value = subtotal;
                 document.getElementById("subtotal").innerHTML = subtotal;
             }
 
-            function totalFunction() {
-                let total = "";
-                let subtotal = document.getElementById("subtotal").value;
-                let tax = document.getElementById("tax").value;
-                let shipping = document.getElementById("shipping").value;
-                let discount = document.getElementById("discount").value;
-                total = ({subtotal}+{tax}+{shipping})-{discount};
+            //  let a=getSubtotal();
+            
+            function getTotal() {
+                // alert(a);
+                // getSubtotal();
+                // y=subtotal;
+                // alert(y);
+                let total;
+                let subtotal= parseInt(document.getElementById("subtotal").innerHTML);
+                console.log('subtotal', subtotal);
+                let tax = parseInt(document.getElementById("tax").value);
+                console.log('tax', tax);
+                let shipping = parseInt(document.getElementById("shipping").value);
+                console.log('shipping', shipping);
+                let discount = parseInt(document.getElementById("discount").value);
+                console.log('discount', discount);
+                total = (subtotal+tax+shipping)-discount;
+                 console.log(total);
                 document.getElementById("total").innerHTML = total;
             }
+            // getTotal();
 
         </script>
     </div>
