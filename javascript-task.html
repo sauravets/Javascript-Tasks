@@ -132,14 +132,35 @@ function getSelectionStart(o) {
 
             function getTotal() {
                 let total;
-                let subtotal = parseFloat(document.getElementById("subtotal").innerHTML);
+
+                let subtotal = document.getElementById("subtotal").innerHTML;
+                if ( !subtotal ) {
+                    subtotal = 0
+                }
+                subtotal = parseFloat(subtotal);
                 console.log('subtotal', subtotal);
-                let tax = parseFloat(document.getElementById("tax").value);
+
+                let tax = document.getElementById("tax").value;
+                if ( !tax ) {
+                    tax = 0;
+                }
+                tax = parseFloat(tax);
                 console.log('tax', tax);
-                let shipping = parseFloat(document.getElementById("shipping").value);
+
+                let shipping = document.getElementById("shipping").value;
+                if ( !shipping ) {
+                    shipping = 0;
+                }
+                shipping = parseFloat(shipping);
                 console.log('shipping', shipping);
-                let discount = parseFloat(document.getElementById("discount").value);
+
+                let discount = document.getElementById("discount").value;
+                if ( !discount ) {
+                    discount = 0;
+                }
+                discount = parseFloat(discount);
                 console.log('discount', discount);
+                
                 total = (subtotal + tax + shipping) - discount;
                 console.log(parseFloat(total));
                 document.getElementById("total").innerHTML = " " + total;
