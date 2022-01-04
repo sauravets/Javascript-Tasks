@@ -10,7 +10,7 @@
         .jsform {
             text-align: center;
             border: 1px solid black;
-            width: 50%;
+            width: 33%;
             margin-left: auto;
             margin-right: auto;
             padding-top: 20px;
@@ -19,6 +19,30 @@
         h1 {
             text-align: center;
         }
+
+        label {
+            width: 130px;
+            display: inline-block;
+            text-align: center;
+        }
+
+        p {
+            text-align: center;
+            padding: 0px;
+           width: 180px;
+        }
+
+        input[type=text] {
+            padding: 10px;
+            border: solid black 1px;
+            width: 100px;
+        }
+        input[type=number] {
+            padding: 10px;
+            border: solid black 1px;
+            width: 100px;
+        }
+        
     </style>
 </head>
 
@@ -26,41 +50,37 @@
     <h1>Javascript Form</h1>
     <div class="jsform">
         <form action="">
-            <label for="product-name">Product Name:</label>
-            <input type="text" name="product-name" id="product-name"><br><br><br>
+            <!-- <label for="product-name">Product Name:</label> -->
+            <input type="text" name="product-name" id="product-name" placeholder="Product-Name">
 
-            <label for="quantity">Quantity:</label>
-            <input type="text" onkeypress="return onlyNumberKey(event)" maxlength="11" name="quantity"
-                id="quantity"><br><br><br>
+            <!-- <label for="quantity">Quantity:</label> -->
+            <input type="number" onkeypress="return onlyNumberKey(event)" name="quantity" id="quantity" placeholder="Quantity"
+                oninput="return getSubtotal()">
 
-            <label for="amount">Amount:</label>
-            <input type="text" onkeypress="return onlyNumberKey(event)" maxlength="11" name="amount" id="amount">
+            <!-- <label for="amount">Amount:</label> -->
+            <input type="text" onkeypress="return validateFloatKeyPress(this,event)" name="amount" id="amount" placeholder="Amount"
+                oninput="return getSubtotal()">
             <br><br><br>
 
             <label for="tax">Tax:</label>
-            <input type="text" onkeypress="return onlyNumberKey(event)" maxlength="11" name="tax" id="tax"><br><br><br>
+            <input type="text" onkeypress="return validateFloatKeyPress(this,event)" name="tax" id="tax"
+                oninput="return getTotal()" style="width: 220px;"><br><br><br>
 
             <label for="shipping">Shipping:</label>
-            <input type="text" onkeypress="return onlyNumberKey(event)" maxlength="11" name="shipping"
-                id="shipping"><br><br><br>
+            <input type="text" onkeypress="return validateFloatKeyPress(this,event)" name="shipping" id="shipping"
+                oninput="return getTotal()" style="width: 220px;"><br><br><br>
 
             <label for="discount">Discount:</label>
-            <input type="text" onkeypress="return onlyNumberKey(event)" maxlength="11" name="discount"
-                id="discount"><br><br><br>
+            <input type="text" onkeypress="return validateFloatKeyPress(this,event)" name="discount" id="discount"
+                oninput="return getTotal()" style="width: 220px;"><br><br><br>
 
-                <input type="button" onClick="getSubtotal()" Value="subtotal" />
+            <p>Subtotal is:<span id="subtotal"></span></p>
+            <p>Total is:<span id="total"></span></p>
 
-                <input type="button" onClick="getTotal()" Value="total" />
-
-             <!-- <p>Subtotal:<span id="subtotal" oninput="return getSubtotal()"></span></p> -->
-             <p>subtotal is:<span id="subtotal"></span></p>
-             <p>total is:<span id="total"></span></p>
-
-            <!-- <p>Total:<span id="total" oninput="return getTotal()"></span></p> -->
-            
         </form>
 
         <script>
+
             function onlyNumberKey(evt) {
 
                 // Only ASCII character in that range allowed
@@ -71,37 +91,59 @@
             }
 
             
+            function validateFloatKeyPress(el, evt) {
+    var charCode = (evt.which) ? evt.which : event.keyCode;
+    var number = el.value.split('.');
+    if (charCode != 46 && charCode > 31 && (charCode < 48 || charCode > 57)) {
+        return false;
+    }
+    //just one dot (thanks ddlab)
+    if(number.length>1 && charCode == 46){
+         return false;
+    }
+    //get the carat position
+    var caratPos = getSelectionStart(el);
+    var dotPos = el.value.indexOf(".");
+    if( caratPos > dotPos && dotPos>-1 && (number[1].length > 1)){
+        return false;
+    }
+    return true;
+}
+
+//thanks: http://javascript.nwbox.com/cursor_position/
+function getSelectionStart(o) {
+    if (o.createTextRange) {
+        var r = document.selection.createRange().duplicate()
+        r.moveEnd('character', o.value.length)
+        if (r.text == '') return o.value.length
+        return o.value.lastIndexOf(r.text)
+    } else return o.selectionStart
+}
+
             function getSubtotal() {
                 let subtotal;
-                let quantity = document.getElementById("quantity").value;
-                let amount = document.getElementById("amount").value;
+                let quantity = parseFloat(document.getElementById("quantity").value);
+                let amount = parseFloat(document.getElementById("amount").value);
                 subtotal = quantity * amount;
-                console.log(subtotal);
-                // document.getElementById("subtotal").value = subtotal;
-                document.getElementById("subtotal").innerHTML = subtotal;
+                console.log('subtotal', subtotal);
+                document.getElementById("subtotal").innerHTML = " " + subtotal;
             }
 
-            //  let a=getSubtotal();
-            
+
             function getTotal() {
-                // alert(a);
-                // getSubtotal();
-                // y=subtotal;
-                // alert(y);
                 let total;
-                let subtotal= parseInt(document.getElementById("subtotal").innerHTML);
+                let subtotal = parseFloat(document.getElementById("subtotal").innerHTML);
                 console.log('subtotal', subtotal);
-                let tax = parseInt(document.getElementById("tax").value);
+                let tax = parseFloat(document.getElementById("tax").value);
                 console.log('tax', tax);
-                let shipping = parseInt(document.getElementById("shipping").value);
+                let shipping = parseFloat(document.getElementById("shipping").value);
                 console.log('shipping', shipping);
-                let discount = parseInt(document.getElementById("discount").value);
+                let discount = parseFloat(document.getElementById("discount").value);
                 console.log('discount', discount);
-                total = (subtotal+tax+shipping)-discount;
-                 console.log(total);
-                document.getElementById("total").innerHTML = total;
+                total = (subtotal + tax + shipping) - discount;
+                console.log(parseFloat(total));
+                document.getElementById("total").innerHTML = " " + total;
             }
-            // getTotal();
 
         </script>
     </div>
