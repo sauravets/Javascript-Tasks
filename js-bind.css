@@ -1,0 +1,47 @@
+.jsform {
+    text-align: center;
+    border: 1px solid black;
+    width: 33%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 20px;
+}
+
+ h1 {
+    text-align: center;
+}
+
+ label {
+    width: 130px;
+    display: inline-block;
+    text-align: left;
+}
+
+ p {
+    text-align: left;
+    padding-left: 20px;
+}
+
+ .product-name input[type=text] {
+    padding: 12px;
+    border: solid black 1px;
+    width: 100px;
+}
+
+.quantity input[type=number] {
+    padding: 12px;
+    border: solid black 1px;
+    width: 100px;
+}
+
+.tax input[type=text] {
+    width: 225px;
+}
+
+.shipping input[type=text] {
+    width: 225px;
+}
+
+.discount input[type=text] {
+    width: 225px;
+}

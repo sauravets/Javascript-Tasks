@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="js-bind.css">
+    <title>Javascript form</title>
+    <style>
+        
+    </style>
+</head>
+
+<body>
+    <h1>Javascript Form</h1>
+    <div class="jsform">
+        <form action="">
+           
+            <input class="product-name" type="text" name="product-name" id="product-name"  placeholder="Product-Name">
+
+            <input class="quantity" type="number" name="quantity" id="quantity"
+                placeholder="Quantity"  oninput="return getSubtotal()">
+
+            <input class="amount" type="text"  name="amount" id="amount"
+                placeholder="Amount"  oninput="return getSubtotal()">
+            <br><br><br>
+
+            <label for="tax">Tax:</label>
+            <input class="tax" type="text"  name="tax" id="tax" 
+                oninput="return getTotal()"><br><br><br>
+
+            <label for="shipping">Shipping:</label>
+            <input class="shipping" type="text"  name="shipping" id="shipping"
+                oninput="return getTotal()" ><br><br><br>
+
+            <label for="discount">Discount:</label>
+            <input class="discount" type="text"  name="discount" id="discount" 
+                oninput="return getTotal()"><br><br><br>
+
+            <p>Subtotal is:<span id="subtotal"></span></p>
+            <p>Total is:<span id="total"></span></p>
+
+        </form>
+    </div>
+    <script src="js-bind.js"></script>
+</body>
+
+</html>
