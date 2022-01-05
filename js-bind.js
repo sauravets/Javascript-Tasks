@@ -1,4 +1,4 @@
-
+quantity.addEventListener("keypress",onlyNumberKey(evt)());
 function onlyNumberKey(evt) {
 
     // Only ASCII character in that range allowed
@@ -38,12 +38,13 @@ function getSelectionStart(o) {
     } else return o.selectionStart
 }
 
-// document.getElementById("quantity").addEventListener("keypress",getSubtotal())
+// document.getElementById("quantity").addEventListener("keypress",onlyNumberKey(evt))
 
 // document.getElementById("amount").addEventListener("keypress",getSubtotal())
 
-// quantity.addEventListener("keypress",getSubtotal());
+// quantity.addEventListener("keypress",onlyNumberKey(evt)());
 // amount.addEventListener("keypress",getSubtotal());
+
 
 function getSubtotal() {
     let subtotal;
@@ -52,7 +53,7 @@ function getSubtotal() {
         quantity = 0;
     }
     quantity = parseFloat(quantity);
-   
+    
 
     let amount = parseFloat(document.getElementById("amount").value);
     if (!amount) {
