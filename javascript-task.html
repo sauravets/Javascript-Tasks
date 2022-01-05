@@ -23,26 +23,25 @@
         label {
             width: 130px;
             display: inline-block;
-            text-align: center;
+            text-align: left;
         }
 
         p {
-            text-align: center;
-            padding: 0px;
-           width: 180px;
+            text-align: left;
+            padding-left: 20px;
         }
 
         input[type=text] {
-            padding: 10px;
+            padding: 12px;
             border: solid black 1px;
             width: 100px;
         }
+
         input[type=number] {
-            padding: 10px;
+            padding: 12px;
             border: solid black 1px;
             width: 100px;
         }
-        
     </style>
 </head>
 
@@ -54,25 +53,25 @@
             <input type="text" name="product-name" id="product-name" placeholder="Product-Name">
 
             <!-- <label for="quantity">Quantity:</label> -->
-            <input type="number" onkeypress="return onlyNumberKey(event)" name="quantity" id="quantity" placeholder="Quantity"
-                oninput="return getSubtotal()">
+            <input type="number" onkeypress="return onlyNumberKey(event)" name="quantity" id="quantity"
+                placeholder="Quantity" oninput="return getSubtotal()">
 
             <!-- <label for="amount">Amount:</label> -->
-            <input type="text" onkeypress="return validateFloatKeyPress(this,event)" name="amount" id="amount" placeholder="Amount"
-                oninput="return getSubtotal()">
+            <input type="text" onkeypress="return validateFloatKeyPress(this,event)" name="amount" id="amount"
+                placeholder="Amount" oninput="return getSubtotal()">
             <br><br><br>
 
             <label for="tax">Tax:</label>
             <input type="text" onkeypress="return validateFloatKeyPress(this,event)" name="tax" id="tax"
-                oninput="return getTotal()" style="width: 220px;"><br><br><br>
+                oninput="return getTotal()" style="width: 225px;"><br><br><br>
 
             <label for="shipping">Shipping:</label>
             <input type="text" onkeypress="return validateFloatKeyPress(this,event)" name="shipping" id="shipping"
-                oninput="return getTotal()" style="width: 220px;"><br><br><br>
+                oninput="return getTotal()" style="width: 225px;"><br><br><br>
 
             <label for="discount">Discount:</label>
             <input type="text" onkeypress="return validateFloatKeyPress(this,event)" name="discount" id="discount"
-                oninput="return getTotal()" style="width: 220px;"><br><br><br>
+                oninput="return getTotal()" style="width: 225px;"><br><br><br>
 
             <p>Subtotal is:<span id="subtotal"></span></p>
             <p>Total is:<span id="total"></span></p>
@@ -90,40 +89,51 @@
                 return true;
             }
 
-            
-            function validateFloatKeyPress(el, evt) {
-    var charCode = (evt.which) ? evt.which : event.keyCode;
-    var number = el.value.split('.');
-    if (charCode != 46 && charCode > 31 && (charCode < 48 || charCode > 57)) {
-        return false;
-    }
-    //just one dot (thanks ddlab)
-    if(number.length>1 && charCode == 46){
-         return false;
-    }
-    //get the carat position
-    var caratPos = getSelectionStart(el);
-    var dotPos = el.value.indexOf(".");
-    if( caratPos > dotPos && dotPos>-1 && (number[1].length > 1)){
-        return false;
-    }
-    return true;
-}
 
-//thanks: http://javascript.nwbox.com/cursor_position/
-function getSelectionStart(o) {
-    if (o.createTextRange) {
-        var r = document.selection.createRange().duplicate()
-        r.moveEnd('character', o.value.length)
-        if (r.text == '') return o.value.length
-        return o.value.lastIndexOf(r.text)
-    } else return o.selectionStart
-}
+            function validateFloatKeyPress(el, evt) {
+                var charCode = (evt.which) ? evt.which : event.keyCode;
+                var number = el.value.split('.');
+                if (charCode != 46 && charCode > 31 && (charCode < 48 || charCode > 57)) {
+                    return false;
+                }
+                //just one dot (thanks ddlab)
+                if (number.length > 1 && charCode == 46) {
+                    return false;
+                }
+                //get the carat position
+                var caratPos = getSelectionStart(el);
+                var dotPos = el.value.indexOf(".");
+                if (caratPos > dotPos && dotPos > -1 && (number[1].length > 1)) {
+                    return false;
+                }
+                return true;
+            }
+
+            //thanks: http://javascript.nwbox.com/cursor_position/
+            function getSelectionStart(o) {
+                if (o.createTextRange) {
+                    var r = document.selection.createRange().duplicate()
+                    r.moveEnd('character', o.value.length)
+                    if (r.text == '') return o.value.length
+                    return o.value.lastIndexOf(r.text)
+                } else return o.selectionStart
+            }
+
 
             function getSubtotal() {
                 let subtotal;
                 let quantity = parseFloat(document.getElementById("quantity").value);
+                if (!quantity) {
+                    quantity = 0;
+                }
+                quantity = parseFloat(quantity);
+
                 let amount = parseFloat(document.getElementById("amount").value);
+                if (!amount) {
+                    amount = 0;
+                }
+                amount = parseFloat(amount);
+
                 subtotal = quantity * amount;
                 console.log('subtotal', subtotal);
                 document.getElementById("subtotal").innerHTML = " " + subtotal;
@@ -134,33 +144,33 @@ function getSelectionStart(o) {
                 let total;
 
                 let subtotal = document.getElementById("subtotal").innerHTML;
-                if ( !subtotal ) {
-                    subtotal = 0
+                if (!subtotal) {
+                    subtotal = 0;
                 }
                 subtotal = parseFloat(subtotal);
                 console.log('subtotal', subtotal);
 
                 let tax = document.getElementById("tax").value;
-                if ( !tax ) {
+                if (!tax) {
                     tax = 0;
                 }
                 tax = parseFloat(tax);
                 console.log('tax', tax);
 
                 let shipping = document.getElementById("shipping").value;
-                if ( !shipping ) {
+                if (!shipping) {
                     shipping = 0;
                 }
                 shipping = parseFloat(shipping);
                 console.log('shipping', shipping);
 
                 let discount = document.getElementById("discount").value;
-                if ( !discount ) {
+                if (!discount) {
                     discount = 0;
                 }
                 discount = parseFloat(discount);
                 console.log('discount', discount);
-                
+
                 total = (subtotal + tax + shipping) - discount;
                 console.log(parseFloat(total));
                 document.getElementById("total").innerHTML = " " + total;
