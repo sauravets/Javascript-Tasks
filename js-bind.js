@@ -1,18 +1,23 @@
-quantity.addEventListener("keypress",onlyNumberKey(evt)());
+
+document.getElementById("quantity").addEventListener("keypress", onlyNumberKey);
 function onlyNumberKey(evt) {
 
     // Only ASCII character in that range allowed
     var ASCIICode = (evt.which) ? evt.which : evt.keyCode
-    if (ASCIICode > 31 && (ASCIICode < 48 || ASCIICode > 57))
+    if (ASCIICode > 31 && (ASCIICode < 48 || ASCIICode > 57)){
+        evt.preventDefault();
         return false;
+    }
     return true;
-}
 
+    }
 
+ document.getElementById("amount").addEventListener("keypress", validateFloatKeyPress);
 function validateFloatKeyPress(el, evt) {
-    var charCode = (evt.which) ? evt.which : event.keyCode;
+    var charCode = (evt.which) ? evt.which : evt.keyCode;
     var number = el.value.split('.');
     if (charCode != 46 && charCode > 31 && (charCode < 48 || charCode > 57)) {
+        // el.preventDefault();
         return false;
     }
     //just one dot (thanks ddlab)
@@ -23,22 +28,23 @@ function validateFloatKeyPress(el, evt) {
     var caratPos = getSelectionStart(el);
     var dotPos = el.value.indexOf(".");
     if (caratPos > dotPos && dotPos > -1 && (number[1].length > 1)) {
+        
         return false;
     }
     return true;
 }
 
-//thanks: http://javascript.nwbox.com/cursor_position/
-function getSelectionStart(o) {
-    if (o.createTextRange) {
-        var r = document.selection.createRange().duplicate()
-        r.moveEnd('character', o.value.length)
-        if (r.text == '') return o.value.length
-        return o.value.lastIndexOf(r.text)
-    } else return o.selectionStart
-}
+// //thanks: http://javascript.nwbox.com/cursor_position/
+// function getSelectionStart(o) {
+//     if (o.createTextRange) {
+//         var r = document.selection.createRange().duplicate()
+//         r.moveEnd('character', o.value.length)
+//         if (r.text == '') return o.value.length
+//         return o.value.lastIndexOf(r.text)
+//     } else return o.selectionStart
+// }
 
-// document.getElementById("quantity").addEventListener("keypress",onlyNumberKey(evt))
+
 
 // document.getElementById("amount").addEventListener("keypress",getSubtotal())
 
@@ -52,8 +58,8 @@ function getSubtotal() {
     if (!quantity) {
         quantity = 0;
     }
-    quantity = parseFloat(quantity);
     
+    quantity = parseFloat(quantity);
 
     let amount = parseFloat(document.getElementById("amount").value);
     if (!amount) {
