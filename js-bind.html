@@ -17,23 +17,20 @@
             <input type="text" name="product-name" id="product-name"  placeholder="Product-Name">
 
             <input type="number" name="quantity" id="quantity"
-                placeholder="Quantity"  oninput="return getSubtotal()">
+                placeholder="Quantity">
 
             <input type="text"  name="amount" id="amount"
-                placeholder="Amount"  oninput="return getSubtotal()">
+                placeholder="Amount">
             <br><br><br>
 
             <label for="tax">Tax:</label>
-            <input  type="text"  name="tax" id="tax" 
-                oninput="return getTotal()"><br><br><br>
+            <input  type="text"  name="tax" id="tax"><br><br><br>
 
             <label for="shipping">Shipping:</label>
-            <input  type="text"  name="shipping" id="shipping"
-                oninput="return getTotal()" ><br><br><br>
+            <input  type="text"  name="shipping" id="shipping" ><br><br><br>
 
             <label for="discount">Discount:</label>
-            <input type="text"  name="discount" id="discount" 
-                oninput="return getTotal()"><br><br><br>
+            <input type="text"  name="discount" id="discount"><br><br><br>
 
             <p>Subtotal is:<span id="subtotal"></span></p>
             <p>Total is:<span id="total"></span></p>
