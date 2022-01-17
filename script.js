@@ -87,3 +87,50 @@ function getTotal() {
     total = (subtotal + tax + shipping) - discount;
     document.getElementById("total").innerHTML = " " + total;
 }
+
+
+document.getElementById("add-new").addEventListener("click", addnewFunction);
+// 1.
+// function addnewFunction(){
+//     let html = '';
+//     html +=  '<div id="first-row">';
+//     html += '<input type="text" name="product-name" id="product-name"  placeholder="Product-Name">';
+//     html += '<input type="number" name="quantity" id="quantity" placeholder="Quantity">';
+//     html += '<input type="text"  name="amount" id="amount" placeholder="Amount">';
+//     html += '<div>';
+
+// document.getElementById("new-row").append(html);
+// // console(html);
+// }
+
+// 2.
+// function addnewFunction() {
+//     let firstrow = document.getElementById("first-row");
+//     let pfield = document.createElement("input");
+//     let afield = document.createElement("input");
+//     let qfield= document.createElement("input");
+//     pfield.setAttribute("type","text");
+//     pfield.setAttribute("name","product-name");
+//     pfield.setAttribute("placeholder","Product-Name");
+//     qfield.setAttribute("type","number");
+//     qfield.setAttribute("name","quantity");
+//     qfield.setAttribute("placeholder","Quantity");
+//     afield.setAttribute("type","text");
+//     afield.setAttribute("name","amount");
+//     afield.setAttribute("placeholder","Amount");
+
+//     firstrow.appendChild(pfield);
+//     firstrow.appendChild(qfield);
+//     firstrow.appendChild(afield);
+// } append(p)p>
+// 3. 
+
+function addnewFunction() {
+    let firstrow = document.getElementById("first-row");
+    let newfield = '<div>';
+            newfield += '<input type="text" name="product-name" id="product-name" placeholder="Product-Name">     ';
+            newfield += '<input type="number" name="quantity" id="quantity" placeholder="Quantity"> ';
+            newfield += '<input type="text" name="amount" id="amount" placeholder="Amount">';
+        newfield += '<br><br></div>';
+    firstrow.insertAdjacentHTML('beforeend', newfield);
+}

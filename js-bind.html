@@ -13,24 +13,27 @@
     <h1>Javascript Form</h1>
     <div class="jsform">
         <form action="">
-           
-            <input type="text" name="product-name" id="product-name"  placeholder="Product-Name">
+            <div id="first-row">
+                <div>
+                    <input type="text" name="product-name" id="product-name" placeholder="Product-Name">
 
-            <input type="number" name="quantity" id="quantity"
-                placeholder="Quantity">
+                    <input type="number" name="quantity" id="quantity" placeholder="Quantity">
 
-            <input type="text"  name="amount" id="amount"
-                placeholder="Amount">
-            <br><br><br>
+                    <input type="text" name="amount" id="amount" placeholder="Amount">
+                    <br><br>
+                </div>
+            </div>
+            <div id="new-row"></div>
+            <button type="button" id="add-new">Add New</button><br><br>
 
             <label for="tax">Tax:</label>
-            <input  type="text"  name="tax" id="tax"><br><br><br>
+            <input type="text" name="tax" id="tax"><br><br><br>
 
             <label for="shipping">Shipping:</label>
-            <input  type="text"  name="shipping" id="shipping" ><br><br><br>
+            <input type="text" name="shipping" id="shipping"><br><br><br>
 
             <label for="discount">Discount:</label>
-            <input type="text"  name="discount" id="discount"><br><br><br>
+            <input type="text" name="discount" id="discount"><br><br><br>
 
             <p>Subtotal is:<span id="subtotal"></span></p>
             <p>Total is:<span id="total"></span></p>
