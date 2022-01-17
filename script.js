@@ -49,8 +49,8 @@ function validateFloatKeyPress(evt) {
 // count subtotal-
 function getSubtotal() {
     let subtotal;
-    let quantity = parseFloat(document.getElementById("quantity").value);
-    let amount = parseFloat(document.getElementById("amount").value);
+    let quantity = parseFloat(document.getElementsById("quantity").value);
+    let amount = parseFloat(document.getElementsById("amount").value);
     if (!quantity) {
         quantity = 0;
     }
@@ -89,14 +89,14 @@ function getTotal() {
     total = (subtotal + tax + shipping) - discount;
     document.getElementById("total").innerHTML = " " + total;
 }
- 
+
 // add field dynamically-
 function addnewFunction() {
     let firstrow = document.getElementById("first-row");
     let newfield = '<div>';
-            newfield += '<input type="text" name="product-name" id="product-name" placeholder="Product-Name">     ';
-            newfield += '<input type="number" name="quantity" id="quantity" placeholder="Quantity"> ';
-            newfield += '<input type="text" name="amount" id="amount" placeholder="Amount">';
-        newfield += '<br><br></div>';
+    newfield += '<input type="text" name="product-name" id="product-name" placeholder="Product-Name">     ';
+    newfield += '<input type="number" name="quantity" id="quantity" placeholder="Quantity"> ';
+    newfield += '<input type="text" name="amount" id="amount" placeholder="Amount">';
+    newfield += '<br><br></div>';
     firstrow.insertAdjacentHTML('beforeend', newfield);
 }
