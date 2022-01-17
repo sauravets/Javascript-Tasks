@@ -1,4 +1,17 @@
+// Event-listener-
 document.getElementById("quantity").addEventListener("keypress", onlyNumberKey);
+document.getElementById("amount").addEventListener("keypress", validateFloatKeyPress);
+document.getElementById("tax").addEventListener("keypress", validateFloatKeyPress);
+document.getElementById("shipping").addEventListener("keypress", validateFloatKeyPress);
+document.getElementById("discount").addEventListener("keypress", validateFloatKeyPress);
+document.getElementById("quantity").addEventListener("input", getSubtotal);
+document.getElementById("amount").addEventListener("input", getSubtotal);
+document.getElementById("tax").addEventListener("input", getTotal);
+document.getElementById("shipping").addEventListener("input", getTotal);
+document.getElementById("discount").addEventListener("input", getTotal);
+document.getElementById("add-new").addEventListener("click", addnewFunction);
+
+// function to show only number-
 function onlyNumberKey(evt) {
 
     // Only ASCII character in that range allowed
@@ -10,12 +23,7 @@ function onlyNumberKey(evt) {
     return true;
 
 }
-
-document.getElementById("amount").addEventListener("keypress", validateFloatKeyPress);
-document.getElementById("tax").addEventListener("keypress", validateFloatKeyPress);
-document.getElementById("shipping").addEventListener("keypress", validateFloatKeyPress);
-document.getElementById("discount").addEventListener("keypress", validateFloatKeyPress);
-
+// can show decimal numbers-
 function validateFloatKeyPress(evt) {
     var theEvent = evt || window.event;
     var regex = /[0-9]|\./;
@@ -38,9 +46,7 @@ function validateFloatKeyPress(evt) {
 
     }
 }
-
-document.getElementById("quantity").addEventListener("input", getSubtotal);
-document.getElementById("amount").addEventListener("input", getSubtotal);
+// count subtotal-
 function getSubtotal() {
     let subtotal;
     let quantity = parseFloat(document.getElementById("quantity").value);
@@ -57,11 +63,7 @@ function getSubtotal() {
     subtotal = quantity * amount;
     document.getElementById("subtotal").innerHTML = " " + subtotal;
 }
-
-document.getElementById("tax").addEventListener("input", getTotal);
-document.getElementById("shipping").addEventListener("input", getTotal);
-document.getElementById("discount").addEventListener("input", getTotal);
-
+// count total-
 function getTotal() {
     let total;
     let subtotal = document.getElementById("subtotal").innerHTML;
@@ -87,44 +89,8 @@ function getTotal() {
     total = (subtotal + tax + shipping) - discount;
     document.getElementById("total").innerHTML = " " + total;
 }
-
-
-document.getElementById("add-new").addEventListener("click", addnewFunction);
-// 1.
-// function addnewFunction(){
-//     let html = '';
-//     html +=  '<div id="first-row">';
-//     html += '<input type="text" name="product-name" id="product-name"  placeholder="Product-Name">';
-//     html += '<input type="number" name="quantity" id="quantity" placeholder="Quantity">';
-//     html += '<input type="text"  name="amount" id="amount" placeholder="Amount">';
-//     html += '<div>';
-
-// document.getElementById("new-row").append(html);
-// // console(html);
-// }
-
-// 2.
-// function addnewFunction() {
-//     let firstrow = document.getElementById("first-row");
-//     let pfield = document.createElement("input");
-//     let afield = document.createElement("input");
-//     let qfield= document.createElement("input");
-//     pfield.setAttribute("type","text");
-//     pfield.setAttribute("name","product-name");
-//     pfield.setAttribute("placeholder","Product-Name");
-//     qfield.setAttribute("type","number");
-//     qfield.setAttribute("name","quantity");
-//     qfield.setAttribute("placeholder","Quantity");
-//     afield.setAttribute("type","text");
-//     afield.setAttribute("name","amount");
-//     afield.setAttribute("placeholder","Amount");
-
-//     firstrow.appendChild(pfield);
-//     firstrow.appendChild(qfield);
-//     firstrow.appendChild(afield);
-// } append(p)p>
-// 3. 
-
+ 
+// add field dynamically-
 function addnewFunction() {
     let firstrow = document.getElementById("first-row");
     let newfield = '<div>';
