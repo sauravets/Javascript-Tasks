@@ -17,19 +17,19 @@
     text-align: left;
 }
 
-#product-name  {
+.product-name  {
     padding: 12px;
     border: solid black 1px;
     width: 100px;
 }
 
-#quantity {
+.ets-quantity {
     padding: 12px;
     border: solid black 1px;
     width: 100px;
 }
 
-#amount {
+.ets-amount {
     padding: 12px;
     border: solid black 1px;
     width: 100px;
